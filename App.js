@@ -1,15 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import { useFonts } from 'expo-font';
+import StackNavigator from './src/screens/StackNavigator';
+import { createStore } from 'redux';
+import reducer from './src/store/reducer';
+import { Provider } from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,3 +15,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+const store = createStore(reducer);
+
+export default function App() {
+  const [loaded] = useFonts({
+    SourceSansPro: require('./assets/font/SourceSansPro-Regular.ttf'),
+  });
+  
+  if (!loaded) {
+    return null;
+  }
+
+  return (
+    <Provider>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
+    </Provider>
+  );
+}
