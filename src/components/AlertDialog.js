@@ -65,7 +65,7 @@ function AlertDialog({ visible, type, title, contentText, success, cancel, hideA
   }
   const onButtonPress = button => {
     closeAlert();
-    if (button.onPress) {
+    if (button && button.onPress) {
       if (type === "Text") {
         button.onPress();
       } else {
