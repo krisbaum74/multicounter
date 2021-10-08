@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { getCounters } from '../store/selectors';
+import { setCounter } from '../store/actions';
 import CounterButton from './CounterButton';
 
 const styles = StyleSheet.create({
@@ -38,26 +39,33 @@ const styles = StyleSheet.create({
   }
 })
 
-function HomeListItem({ counter: {title, count} }) {
+function HomeListItem({ counter: { title, count }, setCounterDispatch }) {
+  const resetCounter = () => setCounterDispatch({ title, count: 0 });
+  const decreaseCounter = () => setCounterDispatch({ title, count: count - 1 });
+  const increaseCounter = () => setCounterDispatch({ title, count: count + 1 });
   return (
     <View style={styles.container}>
       <Text style={styles.counterName}>
         {title}
       </Text>
       <View style={styles.counter}>
-        <CounterButton icon="redo" size={20} color="#FFEB82" style={styles.buttonMarginRight} />
-        <CounterButton icon="minus" size={20} color="#FFB156" style={styles.buttonMarginRight} />
+        <CounterButton icon="redo" size={20} color="#FFEB82" style={styles.buttonMarginRight} onPress={resetCounter} />
+        <CounterButton icon="minus" size={20} color="#FFB156" style={styles.buttonMarginRight} onPress={decreaseCounter} />
         <Text style={styles.count}>
           {count}
         </Text>
-        <CounterButton icon="plus" size={20} color="#C4E975" style={styles.buttonMarginLeft} />
+        <CounterButton icon="plus" size={20} color="#C4E975" style={styles.buttonMarginLeft} onPress={increaseCounter} />
       </View>
     </View>
   )
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  counter: getCounters(state)[ownProps.title]
+  counter: getCounters(state)[ownProps.title],
 });
 
-export default connect(mapStateToProps)(HomeListItem);
+const mapDispatchToProps = {
+  setCounterDispatch: setCounter
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeListItem);

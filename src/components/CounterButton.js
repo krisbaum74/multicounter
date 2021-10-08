@@ -13,9 +13,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function CounterButton({ icon, size, color, style}) {
+export default function CounterButton({ icon, size, color, style, onPress}) {
   return (
-    <TouchableOpacity style={[styles.button, {backgroundColor: color}, style]}>
+    <TouchableOpacity style={[styles.button, {backgroundColor: color}, style]} onPress={onPress}>
       <FontAwesome5 name={icon} size={size} color="black" style={styles.icon} />
     </TouchableOpacity>
   );
