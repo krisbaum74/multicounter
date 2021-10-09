@@ -88,18 +88,28 @@ function AlertDialog({ visible, type, title, contentText, success, cancel, hideA
           </Text>
           )}
         </View>
-        <View style={styles.buttons}>
-          <TouchableOpacity style={[styles.button, styles.buttonMarginRight, styles.buttonRadiusLeft]} onPress={() => onButtonPress(cancel)}>
+        {type === "Warning" ? (
+          <View style={styles.buttons}>
+          <TouchableOpacity style={[styles.button, styles.buttonRadiusRight, styles.buttonRadiusLeft]} onPress={() => onButtonPress(success)}>
             <Text style={styles.text}>
-              {(cancel && cancel.text) || "Cancel" }
+              {(success && success.text) || "OK" }
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.buttonRadiusRight]} onPress={() => onButtonPress(success)}>
-            <Text style={styles.text}>
-              {(success && success.text) || "Yes" }
-            </Text>
-          </TouchableOpacity>
-        </View>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={styles.buttons}>
+            <TouchableOpacity style={[styles.button, styles.buttonMarginRight, styles.buttonRadiusLeft]} onPress={() => onButtonPress(cancel)}>
+              <Text style={styles.text}>
+                {(cancel && cancel.text) || "Cancel" }
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.button, styles.buttonRadiusRight]} onPress={() => onButtonPress(success)}>
+              <Text style={styles.text}>
+                {(success && success.text) || "Yes" }
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );

@@ -5,9 +5,9 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import backgrounGradient from '../../../assets/background-gradient.png';
 import HeaderButtonGroup from '../../components/HeaderButtonsGroup';
 import HomeListItem from '../../components/HomeListItem';
-import { showInputAlert } from '../../services/AlertService';
+import { showInputAlert, showWarningAlert } from '../../services/AlertService';
 import { addCounter } from '../../store/actions';
-import { getCounterOrder } from '../../store/selectors';
+import { getCounterOrder, getCounters } from '../../store/selectors';
 import store from '../../store/store';
 
 const styles = StyleSheet.create({
@@ -42,7 +42,13 @@ export const homeScreenOptions = ({ navigation }) => ({
           showInputAlert({
             title: "Enter counterName",
             success: {
-              onPress: text => store.dispatch(addCounter(text))
+              onPress: text => {
+                if (getCounters(store.getState())[text]) {
+                  showWarningAlert({ title: "Can't create counter", text: "That name already exists. Please choose another name" })
+                } else {
+                  store.dispatch(addCounter(text))
+                }
+              }
             }
           })
         }
