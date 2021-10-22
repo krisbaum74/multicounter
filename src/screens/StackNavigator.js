@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './home/HomeScreen';
+import HomeScreen, { homeScreenOptions } from './home/HomeScreen';
+import SettingsScreen from './settings/SettingsScreen';
 
 const Stack = createStackNavigator();
 
@@ -16,10 +17,12 @@ export default function StackNavigator() {
       headerTintColor: "white",
       headerShadowVisible: true,
       headerTitleStyle: {
-        fontFamily: "SourceSansPro"
-      }
+        fontFamily: "SourceSansPro",
+        fontSize: 24
+      },
     }} >
-      <Stack.Screen name="Counters" component={HomeScreen} />
+      <Stack.Screen name="Counters" component={HomeScreen} options={homeScreenOptions} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );
 }

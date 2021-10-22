@@ -3,9 +3,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import StackNavigator from './src/screens/StackNavigator';
-import { createStore } from 'redux';
-import reducer from './src/store/reducer';
 import { Provider } from 'react-redux';
+import store from './src/store/store';
+import AlertDialog from './src/components/AlertDialog';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,8 +15,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-const store = createStore(reducer);
 
 export default function App() {
   const [loaded] = useFonts({
@@ -28,10 +26,11 @@ export default function App() {
   }
 
   return (
-    <Provider>
+    <Provider store={store}>
       <NavigationContainer>
         <StackNavigator />
       </NavigationContainer>
+      <AlertDialog />
     </Provider>
   );
 }
