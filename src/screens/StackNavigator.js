@@ -9,18 +9,19 @@ export default function StackNavigator() {
   return (
     <Stack.Navigator screenOptions={{
       headerStyle: {
-        backgroundColor: "#2B5B61",
+        backgroundColor: '#2B5B61',
         elevation: 0,
         shadowOpacity: 0,
         borderBottomWidth: 0,
       },
-      headerTintColor: "white",
+      headerTintColor: 'white',
       headerShadowVisible: true,
       headerTitleStyle: {
-        fontFamily: "SourceSansPro",
-        fontSize: 24
+        fontFamily: 'SourceSansPro',
+        fontSize: 24,
       },
-    }} >
+    }}
+    >
       <Stack.Screen name="Counters" component={HomeScreen} options={homeScreenOptions} />
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>

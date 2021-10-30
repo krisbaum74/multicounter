@@ -1,5 +1,7 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import {
+  ImageBackground, StyleSheet, Text,
+} from 'react-native';
 import backgrounGradient from '../../../assets/background-gradient.png';
 
 const styles = StyleSheet.create({
@@ -10,15 +12,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   sample: {
-    color: "white",
-    fontFamily: "SourceSansPro"
-  }
+    color: 'white',
+    fontFamily: 'SourceSansPro',
+  },
 });
 
 export default function HomeScreen() {
   return (
     <ImageBackground source={backgrounGradient} resizeMode="stretch" style={styles.container}>
-      <Text style={styles.sample}>Open up src/settings/SettingsScreen.js to start working on your app!</Text>
+      <Text style={styles.sample}>
+        Open up src/settings/SettingsScreen.js to start working on your app!
+      </Text>
     </ImageBackground>
   );
 }

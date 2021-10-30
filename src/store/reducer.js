@@ -2,51 +2,53 @@ const initialState = {
   counters: {},
   counterOrder: [],
   showAlert: false,
-  alertType: "Text", // "Text"|"Input"
-  alertContent: {}
-}
+  alertType: 'Text', // 'Text'|'Warning'|'Input'
+  alertContent: {},
+};
 
 export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    case "addCounter":
-      const newCounterTitle = action.payload
+  const { type, payload } = action;
+  switch (type) {
+    case 'addCounter':
       return {
         ...state,
         counters: {
-          ...state.counters, [newCounterTitle]: {title: newCounterTitle, count: 0}
+          ...state.counters, [payload]: { title: payload, count: 0 },
         },
-        counterOrder: [newCounterTitle, ...state.counterOrder]
+        counterOrder: [payload, ...state.counterOrder],
       };
-    case "removeCounter":
-      const counterTitle = action.payload
+    case 'removeCounter':
       return {
         ...state,
         counters: {
-          ...state.counters, [counterTitle]: undefined
+          ...state.counters, [payload]: undefined,
         },
-        counterOrder: state.counterOrder.filter(item => item !== counterTitle)
+        counterOrder: state.counterOrder.filter((item) => item !== payload),
       };
-    case "setCounter":
-      const { title: counterToSet, count: newCounterValue } = action.payload;
+    case 'setCounter':
       return {
         ...state,
         counters: {
-          ...state.counters, [counterToSet]: {...state.counters[counterToSet], count: newCounterValue}
-        }
+          ...state.counters,
+          [payload.title]: {
+            ...state.counters[payload.title],
+            count: payload.count,
+          },
+        },
       };
-    case "showAlert":
+    case 'showAlert':
       return {
         ...state,
         showAlert: true,
-        alertType: action.payload.type,
-        alertContent: action.payload.data
-      }
-    case "hideAlert":
+        alertType: payload.type,
+        alertContent: payload.data,
+      };
+    case 'hideAlert':
       return {
         ...state,
         showAlert: false,
-        alertContent: {}
-      }
+        alertContent: {},
+      };
     default:
       return state;
   }

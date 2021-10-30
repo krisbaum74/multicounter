@@ -7,37 +7,37 @@ import CounterButton from './CounterButton';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "rgba(255, 255, 255, 0.15)",
-    width: "100%",
-    flexDirection: "row",
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    width: '100%',
+    flexDirection: 'row',
     paddingVertical: 8,
     paddingHorizontal: 16,
-    marginBottom: 4
+    marginBottom: 4,
   },
   counterName: {
     flex: 1,
     marginRight: 16,
-    fontFamily: "SourceSansPro",
+    fontFamily: 'SourceSansPro',
     fontSize: 16,
-    color: "white"
+    color: 'white',
   },
   counter: {
-    flexDirection: "row",
-    alignItems: "center"
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   count: {
     width: 50,
     fontSize: 24,
-    textAlign: "center",
-    color: "white"
+    textAlign: 'center',
+    color: 'white',
   },
   buttonMarginLeft: {
-    marginLeft: 8
+    marginLeft: 8,
   },
   buttonMarginRight: {
-    marginRight: 8
-  }
-})
+    marginRight: 8,
+  },
+});
 
 function HomeListItem({ counter: { title, count }, setCounterDispatch }) {
   const resetCounter = () => setCounterDispatch({ title, count: 0 });
@@ -57,7 +57,7 @@ function HomeListItem({ counter: { title, count }, setCounterDispatch }) {
         <CounterButton icon="plus" size={20} color="#C4E975" style={styles.buttonMarginLeft} onPress={increaseCounter} />
       </View>
     </View>
-  )
+  );
 }
 
 const mapStateToProps = (state, ownProps) => ({
@@ -65,7 +65,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = {
-  setCounterDispatch: setCounter
+  setCounterDispatch: setCounter,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeListItem);
