@@ -29,7 +29,7 @@ We will be looking at the following:
 
 ### Submission
 
-To submit, make a branch from `develop` and name it `your-name-here/name-of-feature` (e.g. `thomas-baker/delete-counter`). Once you have finished your feature, please make a pull request with the following details:
+To submit, fork this repository into your own repository, then make a branch from `develop` and name it `your-name-here/name-of-feature` (e.g. `thomas-baker/delete-counter`). Once you have finished your feature, please make a pull request with the following details:
 
 * Destination    : `develop`
 * Title          : Name of Your Feature in Plain English
