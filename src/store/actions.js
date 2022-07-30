@@ -1,23 +1,28 @@
 export const addCounter = (payload) => ({
-  type: 'addCounter',
+  type: "addCounter",
   payload,
 });
 
 export const setCounter = (payload) => ({
-  type: 'setCounter',
+  type: "setCounter",
+  payload,
+});
+
+export const setVisibility = (payload) => ({
+  type: "setVisibility",
   payload,
 });
 
 export const removeCounter = (payload) => ({
-  type: 'removeCounter',
+  type: "removeCounter",
   payload,
 });
 
 export const showAlert = (payload) => ({
-  type: 'showAlert',
+  type: "showAlert",
   payload,
 });
 
 export const hideAlert = () => ({
-  type: 'hideAlert',
+  type: "hideAlert",
 });
