@@ -2,30 +2,36 @@ const initialState = {
   counters: {},
   counterOrder: [],
   showAlert: false,
-  alertType: 'Text', // 'Text'|'Warning'|'Input'
+  alertType: "Text", // 'Text'|'Warning'|'Input'
   alertContent: {},
 };
 
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case 'addCounter':
+    case "addCounter":
       return {
         ...state,
         counters: {
-          ...state.counters, [payload]: { title: payload, count: 0 },
+          ...state.counters,
+          [payload]: {
+            title: payload,
+            count: 0,
+            visibility: { reset: true, decrease: true, increase: true },
+          },
         },
         counterOrder: [payload, ...state.counterOrder],
       };
-    case 'removeCounter':
+    case "removeCounter":
       return {
         ...state,
         counters: {
-          ...state.counters, [payload]: undefined,
+          ...state.counters,
+          [payload]: undefined,
         },
         counterOrder: state.counterOrder.filter((item) => item !== payload),
       };
-    case 'setCounter':
+    case "setCounter":
       return {
         ...state,
         counters: {
@@ -36,14 +42,25 @@ export default function reducer(state = initialState, action) {
           },
         },
       };
-    case 'showAlert':
+    case "setVisibility":
+      return {
+        ...state,
+        counters: {
+          ...state.counters,
+          [payload.title]: {
+            ...state.counters[payload.title],
+            visibility: payload.visibility,
+          },
+        },
+      };
+    case "showAlert":
       return {
         ...state,
         showAlert: true,
         alertType: payload.type,
         alertContent: payload.data,
       };
-    case 'hideAlert':
+    case "hideAlert":
       return {
         ...state,
         showAlert: false,

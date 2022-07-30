@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
 export default function HeaderButtonGroup({ buttons }) {
   return (
     <View style={styles.container}>
-      {buttons.map(({ icon, onPress }) => (
-        <HeaderButton icon={icon} onPress={onPress} />
+      {buttons.map(({ icon, onPress }, i) => (
+        <HeaderButton key={i} icon={icon} onPress={onPress} />
       ))}
     </View>
   );
